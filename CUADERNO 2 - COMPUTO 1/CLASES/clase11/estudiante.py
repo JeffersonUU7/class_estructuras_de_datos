@@ -1,24 +1,42 @@
-#crear un diccionario 
+# Crear un nuevo diccionario
 
 estudiante = {
-    "nombre": "Ana",
-    "edad": 21,
-    "cursos": ["Python", "Estrutura de datos"]
-    
+    "nombre": "Jefferson",
+    "edad": 19,
+    "cursos": ["Python", "Estructura de Datos"]
 }
+# Acceder a elementos
+print("\nNombre :", estudiante["nombre"],
+      "\nEdad :", estudiante["edad"],
+      "\nMaterias :", estudiante["cursos"])
 
-#Acceder a elementos
-print(estudiante["nombre"])
-
-#Acceder/modificar
+# Modificar edad
 estudiante["edad"] = 22
+# Ver cambios al imprimir
+print("\nNombre :", estudiante["nombre"],
+      "\nEdad :", estudiante["edad"],
+      "\nMaterias :", estudiante["cursos"])
+
+# Agregar nueva carrera
 estudiante["carrera"] = "Ing. Software"
+# Ver cambios al imprimir
+print("\nNombres :", estudiante["nombre"],
+      "\nEdad :", estudiante["edad"],
+      "\nCarrera :", estudiante["carrera"],
+      "\nMaterias :", estudiante["cursos"])
 
-print(estudiante)
-
-#Eliminar metodo del
+# Eliminar la edad, con metodo del
 del estudiante["edad"]
-print(estudiante)
+# Ver cambios al imprimir
+print("\nNombres :", estudiante["nombre"],
+      "\nEdad :", estudiante["edad"],
+      "\nCarrera :", estudiante["carrera"],
+      "\nMaterias :", estudiante["cursos"])
 
-#eliminar metodo pop 
-# persona.pop("ciudad")
+# Eliminar la edad, con metodo pop
+estudiante.pop("ciudad")  # si no se especifica, elimina el ultimo
+# Ver cambios al imprimir
+print("\nNombres :", estudiante["nombre"],
+      "\nEdad :", estudiante["edad"],
+      "\nCarrera :", estudiante["carrera"],
+      "\nMaterias :", estudiante["cursos"])

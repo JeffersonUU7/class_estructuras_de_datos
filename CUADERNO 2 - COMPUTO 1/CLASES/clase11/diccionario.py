@@ -2,8 +2,8 @@
 
 #se declara: 
 persona = {
-    "nombre": "Carlos",
-    "edad": 25,
+    "nombre": "Jefferson",
+    "edad": 19,
     "ciudad": "San Miguel"
 }
 
