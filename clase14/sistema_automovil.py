@@ -1,61 +1,61 @@
-#haz una sistema de aceleracion usando funciones donde cada vez presiones el acelerador aumente 10 km
+# Variables de configuración del vehículo
+limite_velocidad = 180
+aumento_aceleracion = 10
+fuerza_freno = 20
+friccion = 2  # Velocidad que se pierde por inercia al soltar el pedal
 
-def acelerar(velocidad_inicial):
-    nueva_velocidad = velocidad_inicial + 10
-    return nueva_velocidad
+def mostrar_tablero(velocidad, estado):
+    # Función simple para imprimir el estado actual del carro
+    print(f"--> Tablero Outlander | Velocidad: {velocidad} km/h | Estado: {estado}")
 
-
-#Pedimos la velocidad inicial
-
-velocidad = int(input("Ingrese la velocidad inicial del automovil (en km/h):"))
-
-velocidad_inicial = acelerar(velocidad)
-
-print("Despues de acelerar, tu velocidad es: " , velocidad_inicial , "km/h")
+def iniciar_simulador():
+    print("=== SIMULADOR DE CONDUCCIÓN ===")
     
+    # Integramos tu idea inicial: pedir la velocidad al principio
+    velocidad_actual = int(input("Ingrese la velocidad inicial de su Mitsubishi Outlander (en km/h): "))
+    
+    print("\nControles de la simulación:")
+    print(" 'a' = Acelerar (+10 km/h)")
+    print(" 'f' = Frenar (-20 km/h)")
+    print(" 's' = Soltar pedal (Pierde 2 km/h por inercia)")
+    print(" 'q' = Apagar motor y salir")
 
-VELOCIDAD_MAXIMA = 180
-ACELERACION = 10
-FRENO = 20
-RESISTENCIA = 2
-
-
-def mostrar_estado(velocidad, acelerando, frenando):
-    estado = "acelerando" if acelerando else "frenando" if frenando else "en marcha"
-    print(f"Velocidad: {velocidad:.0f} km/h | Estado: {estado}")
-
-
-def simular_carro():
-    velocidad = 0
-    print("Simulador de acelerador")
-    print("Comandos: a = acelerar, f = frenar, s = soltar, q = salir")
-
+    # Bucle principal de la simulación
     while True:
-        comando = input("Accion: ").strip().lower()
+        accion = input("\n¿Qué desea hacer? (a/f/s/q): ").strip().lower()
 
-        if comando == "q":
-            print("Simulacion terminada.")
-            break
-
-        if comando not in {"a", "f", "s"}:
-            print("Comando no valido.")
-            continue
-
-        acelerando = comando == "a"
-        frenando = comando == "f"
-
-        if acelerando:
-            velocidad += ACELERACION
-        elif frenando:
-            velocidad -= FRENO
+        # Evaluamos la acción del usuario con un if-elif tradicional
+        if accion == "q":
+            print("Apagando motor. Simulación terminada.")
+            break  # Rompe el ciclo while y termina el programa
+            
+        elif accion == "a":
+            velocidad_actual += aumento_aceleracion
+            estado_carro = "Acelerando"
+            
+        elif accion == "f":
+            velocidad_actual -= fuerza_freno
+            estado_carro = "Frenando"
+            
+        elif accion == "s":
+            velocidad_actual -= friccion
+            estado_carro = "En marcha (sin pisar pedales)"
+            
         else:
-            velocidad -= RESISTENCIA
+            print("Comando no reconocido. Intente con a, f, s o q.")
+            continue  # Salta a la siguiente iteración del bucle sin ejecutar lo de abajo
 
-        velocidad = max(0, min(velocidad, VELOCIDAD_MAXIMA))
-        mostrar_estado(velocidad, acelerando, frenando)
+        # Validaciones de los límites de velocidad (sustituye al max/min de la IA)
+        if velocidad_actual > limite_velocidad:
+            velocidad_actual = limite_velocidad
+            estado_carro += " (¡LÍMITE ALCANZADO!)"
+            
+        elif velocidad_actual < 0:
+            velocidad_actual = 0
+            estado_carro = "Detenido por completo"
 
+        # Llamamos a la función para mostrar la información en pantalla
+        mostrar_tablero(velocidad_actual, estado_carro)
 
-if __name__ == "__main__":
-    simular_carro()
-
-
+# Ejecutamos el programa llamando a la función principal
+iniciar_simulador()
